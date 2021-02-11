@@ -57,6 +57,7 @@ final class GetCoverageCallable extends MasterToSlaveFileCallable<Float> impleme
     public Float invoke(final File ws, final VirtualChannel channel) throws IOException {
         final List<Float> cov = new ArrayList<Float>();
         cov.addAll(getFloats(ws, "**/cobertura.xml", new CoberturaParser()));
+        cov.addAll(getFloats(ws, "**/coverage.xml", new CoveragePyParser()));
         cov.addAll(getFloats(ws, "**/cobertura-coverage.xml", new CoberturaParser()));
         cov.addAll(getFloats(ws, "**/jacoco.xml", new JacocoParser()));
         cov.addAll(getFloats(ws, "**/jacocoTestReport.xml", new JacocoParser())); //default for gradle
